@@ -128,7 +128,7 @@ case $state in
         ;;
       btc)
         _command_args=(
-        '(--force)--force[Overwrite an existing address]'
+          '(--force)--force[Overwrite an existing address]'
         )
         ;;
       ctl)
@@ -181,7 +181,7 @@ case $state in
         ;;
       track)
         _command_args=(
-        "(--local)--local[Only follow locally, don't send a public statement to the server]" \
+          "(--local)--local[Only follow locally, don't send a public statement to the server]" \
           '(-y)-y[Approve remote following without prompting]' \
           '(--skip-proof-cache)--skip-proof-cache[Skip cached proofs, force re-check]'
         )
