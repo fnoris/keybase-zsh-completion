@@ -45,9 +45,10 @@ case $state in
   cmds)
     _subcommands=(
       "base62:base62 operations"
-      "btc:claim a bitcoin address"
       "cert:print the CA cert for api.keybase.io"
+      "chat:chat securely with keybase users"
       "ctl:control the background keybase service"
+      "currency:manage cyrptocurrency address"
       "decrypt:decrypt messages or files for keybase users"
       "deprovision:revoke the current device, log out, and delete local state"
       "device:manage your devices"
@@ -55,6 +56,7 @@ case $state in
       "encrypt:encrypt messages or files for keybase users"
       "follow:verify a user's authenticity and optionally follow them"
       "track:verify a user's authenticity and optionally follow them"
+      "fs:perform filesystem operations"
       "id:identify a user and check their signature chain"
       "list-followers:list thost who follow you"
       "list-following:list who you or the given user is following"
@@ -86,9 +88,10 @@ case $state in
       help)
         _values 'commands' \
           'base62' \
-          'btc' \
           'cert' \
+          'chat' \
           'ctl' \
+          'currency' \
           'decrypt' \
           'deprovision' \
           'device' \
@@ -96,6 +99,7 @@ case $state in
           'encrypt' \
           'follow' \
           'track' \
+          'fs' \
           'id' \
           'list-followers' \
           'list-following' \
@@ -124,12 +128,23 @@ case $state in
         _values "command" \
           'decode[base62 decode]' \
           'encode[base62 encode]' \
-          'help, p[Shows a list of commands or help for one command]'
+          'help[Shows a list of commands or help for one command]'
         ;;
-      btc)
-        _command_args=(
-          '(--force)--force[Overwrite an existing address]'
-        )
+      chat)
+        _values "command" \
+          'api[JSON api]' \
+          'download[Download an attachment from a conversation]' \
+          'hide[Hide or block a conversation]' \
+          'list[List conversations, sorted by activity]' \
+          'ls[List conversations, sorted by activity]' \
+          "list-unread[List conversations, with unread messages at the top]" \
+          "lsur[List conversations, with unread messages at the top]" \
+          'mute[Mute or unmute a conversation]' \
+          'read[Show new messages in a conversation and mark them as read]' \
+          'report[Report a conversation (also blocks it)]' \
+          'send[Send a message to a conversation]' \
+          'upload[Upload an attachment to a conversation]' \
+          'help[Shows a list of commands or help for one command]'
         ;;
       ctl)
         _values "command" \
@@ -141,7 +156,13 @@ case $state in
           'watchdog[Start, watch and prop up the backgound service]' \
           'watchdog2[Start and monitor background services]' \
           'app-exit[Exit the Keybase app]' \
-          'help, h[Shows a list of commands or help for one command]'
+          'help[Shows a list of commands or help for one command]'
+        ;;
+      currency)
+        _values "command" \
+          'add[Sign a cryptocurrency (bitcoin or zcash) address into your identity]' \
+          'help[Shows a list of commands or help for one command]'
+        )
         ;;
       decrypt)
         _command_args=(
@@ -159,7 +180,7 @@ case $state in
           'remove[Remove a device]' \
           'list[List devices]' \
           'add[Authorize a new device]' \
-          'help, h[Shows a list of commands or help for one command]'
+          'help[Shows a list of commands or help for one command]'
         ;;
       encrypt)
         _command_args=(
@@ -186,6 +207,21 @@ case $state in
           '(--skip-proof-cache)--skip-proof-cache[Skip cached proofs, force re-check]'
         )
         ;;
+      fs)
+        _values "command" \
+          'ls[list directory contents]' \
+          'cp[copy one or more directory elements to dest]' \
+          'mv[move one or more directory elements to dest]' \
+          'read[output file contents to standard output]' \
+          'rm[remove one or more directory elements]' \
+          'mkdir[create directory]' \
+          'stat[stat directory element]' \
+          'get-status[get status of pending operation]' \
+          'kill[kill operation]' \
+          'ps[list running operations]' \
+          'write[write input to file]' \
+          'help[Shows a list of commands or help for one command]'
+        ;;
       id)
         _command_args=(
           '(--skip-proof-cache)--skip-proof-cache[Skip cached proofs, force re-check]'
@@ -207,7 +243,7 @@ case $state in
       log)
         _values "command" \
           'send[Send recent debug logs to keybase]' \
-          'help, h[Shows a list of commands or help for one command]'
+          'help[Shows a list of commands or help for one command]'
         ;;
       login)
         _command_args=(
@@ -218,7 +254,7 @@ case $state in
         _values "command" \
           'change[Change your keybase account passphrase]' \
           'recover[Recover your keybase account passphrase]' \
-          'help, h[Shows a list of commands or help for one command]'
+          'help[Shows a list of commands or help for one command]'
         ;;
       pgp)
         _values "command" \
@@ -235,7 +271,7 @@ case $state in
           'drop[Drop Keybases use of a PGP key]' \
           'list[List the active PGP keys in your account]' \
           'purge[Purge all PGP keys from Keybase keyring]' \
-          'help, h[Shows a list of commands or help for one command]'
+          'help[Shows a list of commands or help for one command]'
          ;;
       ping)
         _command_args=(
@@ -255,7 +291,7 @@ case $state in
         _values "command" \
           'status[Get pending rekey status]' \
           'paper[Submit a paper key to help rekeying]' \
-          'help, h[Shows a list of commands or help for one command]'
+          'help[Shows a list of commands or help for one command]'
          ;;
       search)
         _command_args=(
@@ -282,7 +318,7 @@ case $state in
         _values "command" \
           'list[List signatures]' \
           'revoke[Revoke a signature by sig ID]' \
-          'help, h[Shows a list of commands or help for one command]'
+          'help[Shows a list of commands or help for one command]'
         ;;
       status)
         _command_args=(
