@@ -162,7 +162,6 @@ case $state in
         _values "command" \
           'add[Sign a cryptocurrency (bitcoin or zcash) address into your identity]' \
           'help[Shows a list of commands or help for one command]'
-        )
         ;;
       decrypt)
         _command_args=(
