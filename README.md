@@ -8,6 +8,8 @@ Installation
 
 To install put the `_keybase` file inside one of your custom directories inside your `$fpath`. That's it!
 
+Arch Linux users can use [keybase-zsh-completion-git](https://aur.archlinux.org/packages/keybase-zsh-completion-git/) AUR package.
+
 
 License
 -------
